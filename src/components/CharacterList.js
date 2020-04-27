@@ -11,6 +11,7 @@ const CharacterList = (props) => {
       <h2 className='item__container--text'>
         This character: {props.value} doesn't exist.
         <FontAwesomeIcon icon={faFrown} />
+        <p>Searh again</p>
       </h2>
     ) : (
       ''

@@ -13,6 +13,7 @@ const FilterCharacters = (props) => {
   const handleForm = (ev) => {
     ev.preventDefault();
   };
+
   return (
     <form className='input__container' onSubmit={handleForm}>
       <label className='input__label'>Search here for your character!</label>

@@ -1,11 +1,13 @@
 import React, {Fragment} from 'react';
 import CharacterList from './CharacterList';
 import PropTypes from 'prop-types';
-import FilterCharacters from './FilterCharacter';
+
+import Filters from './Filters';
+
 const Home = (props) => {
   return (
     <Fragment>
-      <FilterCharacters handleFilter={props.handleFilter} value={props.value} />
+      <Filters handleFilter={props.handleFilter} value={props.value} handleCheck={props.handleCheck} />
       <CharacterList characters={props.characters} value={props.value} />
     </Fragment>
   );

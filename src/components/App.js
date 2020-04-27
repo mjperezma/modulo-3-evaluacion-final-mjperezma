@@ -9,6 +9,7 @@ import Home from './Home';
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [characterFilter, setCharacterFilter] = useState('');
+  const [gender, setGender] = useState('all');
 
   useEffect(() => {
     fetchRickyMorty().then((data) => {
@@ -19,6 +20,8 @@ const App = () => {
   const handleFilter = (data) => {
     if (data.key === 'name') {
       setCharacterFilter(data.value);
+    } else if (data.key === 'gender') {
+      setGender(data.value);
     }
   };
 
@@ -28,10 +31,18 @@ const App = () => {
     return 0;
   });
 
-  const renderFilterCharacter = characters.filter((character) => {
-    return character.name.toUpperCase().includes(characterFilter.toUpperCase());
-  });
-
+  const renderFilterCharacter = characters
+    .filter((character) => {
+      return character.name.toUpperCase().includes(characterFilter.toUpperCase());
+    })
+    .filter((character) => {
+      if (gender === 'all') {
+        return true;
+      } else {
+        return character.spiece === gender;
+      }
+    });
+  console.log(characters);
   const renderCharacterDetail = (props) => {
     const characterId = parseInt(props.match.params.id);
     const foundCharacter = characters.find((character) => character.id === characterId);
