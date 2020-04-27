@@ -10,6 +10,8 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [characterFilter, setCharacterFilter] = useState('');
   const [gender, setGender] = useState('all');
+  const [planet, setPlanet] = useState('');
+  const [location, setLocation] = useState('');
 
   useEffect(() => {
     fetchRickyMorty().then((data) => {
@@ -18,10 +20,15 @@ const App = () => {
   }, []);
 
   const handleFilter = (data) => {
+    console.log(data);
     if (data.key === 'name') {
       setCharacterFilter(data.value);
     } else if (data.key === 'gender') {
       setGender(data.value);
+    } else if (data.key === 'planet') {
+      setPlanet(data.value);
+    } else if (data.key === 'origin') {
+      setLocation(data.value);
     }
   };
 
@@ -41,8 +48,15 @@ const App = () => {
       } else {
         return character.spiece === gender;
       }
+    })
+    .filter((character) => {
+      return character.location.toUpperCase().includes(planet.toUpperCase());
     });
+  // .filter((character) => {
+  //   return character.origin === location;
+  // });
   console.log(characters);
+
   const renderCharacterDetail = (props) => {
     const characterId = parseInt(props.match.params.id);
     const foundCharacter = characters.find((character) => character.id === characterId);

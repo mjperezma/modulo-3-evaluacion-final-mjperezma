@@ -11,6 +11,7 @@ const fetchRickyMorty = () => {
           status: character.status,
           episode: character.episode,
           origin: character.origin.name,
+          location: character.location.name,
         };
       });
     });

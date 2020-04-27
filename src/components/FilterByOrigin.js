@@ -1,17 +1,19 @@
 import React from 'react';
 
-const FilterByOrigin = () => {
+const FilterByOrigin = (props) => {
+  const handleChange = (ev) => {
+    props.handleFilter({
+      value: ev.target.value,
+      key: 'origin',
+    });
+  };
   return (
     <>
       <label> Select about Origin</label>
-      <p>
-        Unknow
-        <input type='radio' name='origin' />
-      </p>
-      <p>
-        Earth
-        <input type='radio' name='origin' />
-      </p>
+      <input type='checkbox' name='origin' value='unknow' onChange={handleChange} />
+      Unknow
+      <input type='checkbox' name='origin' value='earth' onChange={handleChange} />
+      Earth
     </>
   );
 };
